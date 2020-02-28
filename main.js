@@ -21,17 +21,13 @@ function getTimeRemaining(endtime){
 function initializeClock(endtime){
     tray = new Tray('memes.png')
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Item1', type: 'radio' },
-        { label: 'Item2', type: 'radio' },
-        { label: 'Item3', type: 'radio', checked: true },
         { label: 'Exit', click() {
-                app.quit()
+            app.quit()
             }}
     ])
-    tray.setToolTip("lol")
-    // initializeClock(meme)
-
+    tray.setToolTip("Wanna go home?")
     tray.setContextMenu(contextMenu)
+
     var timeinterval = setInterval(function(){
     var t = getTimeRemaining(endtime);
     // return.log(t)
@@ -82,14 +78,16 @@ function log_in() {
             if (rows.length===0) {
                 // no matching records found
                 // return knex('ingredients').insert({'name': val})
+                initializeClock(meme);
                 return knex('work_hours').insert({'today': today, "got_in": now});
             } else {
-
+                // initializeClock(meme)
                 // return knex('work_hours').where({'today': today}).update({'got_out': now});
             }
         })
         .catch(function(ex) {
             // you can find errors here.
+            initializeClock(meme)
         })
 }
 
@@ -104,13 +102,14 @@ function log_out() {
             if (rows.length===0) {
                 // no matching records found
                 // return knex('ingredients').insert({'name': val})
-                return knex('work_hours').insert({'today': today, "got_in": now});
+                // return knex('work_hours').insert({'today': today, "got_in": now});
             } else {
                 return knex('work_hours').where({'today': today}).update({'got_out': now});
             }
         })
         .catch(function(ex) {
             // you can find errors here.
+
         })
 }
 
@@ -151,17 +150,13 @@ app.on('ready', () => {
         log_out()
     })
 
-    // initializeClock(meme)
     // tray = new Tray('memes.png')
     // const contextMenu = Menu.buildFromTemplate([
-    //     { label: 'Item1', type: 'radio' },
-    //     { label: 'Item2', type: 'radio' },
-    //     { label: 'Item3', type: 'radio', checked: true },
     //     { label: 'Exit', click() {
     //         app.quit()
     //         }}
     // ])
-    // tray.setToolTip(initializeClock(meme))
+    // tray.setToolTip("Wanna go home?")
     // // initializeClock(meme)
     //
     // tray.on("mouse-enter", () => {

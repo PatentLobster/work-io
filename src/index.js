@@ -39,17 +39,29 @@ function update_clock(got_in) {
     var b = moment(new Date(), 'HH:mm:ss');
     var a = moment(got_in, 'HH:mm:ss').add(11, "hours");
     let sum;
-    let headerTitle = document.getElementById("title");
+
     sum = a.diff(b);
     sum = moment.duration(sum);
     // var b = moment("21:00:55", 'HH:mm:ss');
-      headerTitle.innerText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
-      setInterval(function () {
-        if(sum.hours() !== 0) {
-          update_clock(got_in)
 
+      // setInterval(function () {
+      //   if(sum.hours() !== 0) {
+      //     update_clock(got_in)
+      //
+      //   }
+      // })
+        let headerTitle = document.getElementById("title");
+        headerTitle.innerText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
+
+      setInterval(function(){
+        // var t = update_clock(got_in);
+        // // tray.setToolTip(t)
+        update_clock(got_in);
+        if(sum.hours() !== 0){
+          clearInterval(timeinterval);
         }
-      })
+        },1);
+      // return sum
 }
 
 get_data()

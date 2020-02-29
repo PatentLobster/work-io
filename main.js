@@ -19,10 +19,20 @@ const createTray = () => {
 }
 
 const toggleWindow = () => {
-    window.isVisible() ? window.hide() : showWindow();
+    if(window === null){
+        createWindow()
+    } else {
+        if (window.isVisible()) {
+            window.hide(); window = null;
+        } else {
+         showWindow();
+        }
+    }
 }
 
 const showWindow = () => {
+    // createWindow()
+    window.loadFile('src/index.html');
     const position = getWindowPosition();
     window.reload();
     window.show();
@@ -51,9 +61,13 @@ const createWindow = () => {
             nodeIntegration: true
         }
     });
-
+    const position = getWindowPosition();
+    window.setPosition(position.x, position.y, true);
     window.loadFile('src/index.html');
     // window.webContents.openDevTools()
+    window.on('hide', () => {
+    window = null
+    })
 }
 
 
@@ -167,6 +181,8 @@ function greet() {
     }).then((arr) => callNotification(arr) );
 }
 
+
+
 // Run app
 app.on('ready', () => {
 
@@ -179,6 +195,7 @@ app.on('ready', () => {
         // console.log("logged out")
         log_out()
     })
+
 
     createTray();
     createWindow();

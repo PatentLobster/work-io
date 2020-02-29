@@ -7,7 +7,7 @@ let window = undefined;
 // app.dock.hide();
 
 const createTray = () => {
-    tray = new Tray('memes.png');
+    tray = new Tray('icon.png');
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Exit', click() {
             app.quit()
@@ -90,7 +90,7 @@ function getTimeRemaining(endtime){
 }
 
 function initializeClock(endtime){
-    tray = new Tray('memes.png')
+    tray = new Tray('icon.png')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Exit', click() {
             app.quit()
@@ -167,7 +167,7 @@ function log_out() {
                 // no matching records found
                 // return knex('ingredients').insert({'name': val})
                 // return knex('work_hours').insert({'today': today, "got_in": now});
-                const arr = {'title': "Didnt save", 'body': "You logged out before you logged in", icon: "memes.png"};
+                const arr = {'title': "Didnt save", 'body': "You logged out before you logged in", icon: "icon.png"};
                 callNotification(arr)
             } else {
                 return knex('work_hours').where({'today': today}).update({'got_out': now});
@@ -196,7 +196,7 @@ function greet() {
 
         const quotes = response.data.quote.body;
         const author = response.data.quote.author;
-        const arr = {'title': author, 'body': quotes, icon: "memes.png"};
+        const arr = {'title': author, 'body': quotes, icon: "icon.png"};
 
         return arr;
         // console.log(response.data.quote.body);

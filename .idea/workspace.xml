@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6cd6e41-fb7b-416c-ac01-3cda34820c56" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/grav-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/grav-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbs.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbs.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbs.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/memes.png" beforeDir="false" afterPath="$PROJECT_DIR$/memes.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memes.png" beforeDir="false" afterPath="$PROJECT_DIR$/icon.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PatentLobster\PhpstormProjects\work-io" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -105,7 +111,7 @@
       <updated>1582920744808</updated>
       <workItem from="1582920746021" duration="7718000" />
       <workItem from="1582963743384" duration="2828000" />
-      <workItem from="1582976413793" duration="2562000" />
+      <workItem from="1582976413793" duration="3061000" />
     </task>
     <servers />
   </component>

@@ -1,38 +1,73 @@
-const { app, powerMonitor, Menu, Tray, Notification, BrowserWindow } = require('electron')
+const { app, powerMonitor, Menu, Tray, Notification, BrowserWindow, ipcMain } = require('electron')
 const axios = require('axios')
 
-function createWindow () {
-  // Create the browser window.
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  })
+let tray = undefined;
+let window = undefined;
+// Don't show the app in the doc
+// app.dock.hide();
 
-  // and load the index.html of the app.
-  win.loadFile('src/index.html')
-
-  // Open the DevTools.
-  win.webContents.openDevTools()
-    win.on('minimize',function(event){
-        event.preventDefault();
-        win.hide();
-    });
-
-    win.on('close', function (event) {
-        if(!application.isQuiting){
-            event.preventDefault();
-            win.hide();
-        }
-
-        return false;
-    });
+const createTray = () => {
+    tray = new Tray('memes.png');
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Exit', click() {
+            app.quit()
+            }}
+    ])
+    tray.setToolTip("Work-io is running")
+    tray.setContextMenu(contextMenu)
+    tray.on('click', function (event) {
+        toggleWindow();
+    })
 }
 
+const toggleWindow = () => {
+    window.isVisible() ? window.hide() : showWindow();
+}
 
+const showWindow = () => {
+    const position = getWindowPosition();
+    // console.log(position)
+    window.show();
+    window.reload();
+    window.setPosition(position.x, position.y, true);
+    console.log(window.getPosition())
+}
 
+const getWindowPosition = () => {
+    const windowBounds = window.getBounds();
+    const trayBounds = tray.getBounds();
+
+    // Center window horizontally above the tray icon
+    console.log("x:", trayBounds.x," y:",trayBounds.y, " twidth: ", trayBounds.width," theight: ",trayBounds.height, " wwwi:", "windowBounds.width" )
+    const x = Math.round(trayBounds.x - (windowBounds.height / 4))
+    console.log('XXXX:', x);
+    // Position window 4 pixels vertically below the tray icon
+    const y = Math.round((trayBounds.y + trayBounds.height + 120)/2)
+    console.log("yyyyy", y)
+    return {x: x, y: y}
+}
+
+const createWindow = () => {
+    window = new BrowserWindow({
+        width: 320,
+        height: 450,
+        show: true,
+        frame: false,
+        fullscreenable: false,
+        resizable: false,
+        transparent: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+    window.loadFile('src/index.html');
+    // Hide the window when it loses focus
+    // window.on('blur', () => {
+    //     if (!window.webContents.isDevToolsOpened()) {
+    //         window.hide();
+    //     }
+    // });
+}
 
 
 
@@ -132,6 +167,8 @@ function log_out() {
                 // no matching records found
                 // return knex('ingredients').insert({'name': val})
                 // return knex('work_hours').insert({'today': today, "got_in": now});
+                const arr = {'title': "Didnt save", 'body': "You logged out before you logged in", icon: "memes.png"};
+                callNotification(arr)
             } else {
                 return knex('work_hours').where({'today': today}).update({'got_out': now});
             }
@@ -169,6 +206,7 @@ function greet() {
 
 // Run app
 app.on('ready', () => {
+
     powerMonitor.on('unlock-screen', () => {
         // console.log("logged in")
         log_in()
@@ -179,6 +217,8 @@ app.on('ready', () => {
         log_out()
     })
 
-    createWindow()
+    createTray();
+    createWindow();
+    // createWindow()
 
 })

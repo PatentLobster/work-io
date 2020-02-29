@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6cd6e41-fb7b-416c-ac01-3cda34820c56" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/368da1e4-e289-47e7-b21c-4bc75f9b06d5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/368da1e4-e289-47e7-b21c-4bc75f9b06d5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/grav-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/grav-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbs.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/dbs.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbs.sqlite3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memes.png" beforeDir="false" afterPath="$PROJECT_DIR$/memes.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:dbs" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:dbs" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@7bd02464" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -95,7 +104,8 @@
       <option name="presentableId" value="Default" />
       <updated>1582920744808</updated>
       <workItem from="1582920746021" duration="7718000" />
-      <workItem from="1582963743384" duration="2475000" />
+      <workItem from="1582963743384" duration="2828000" />
+      <workItem from="1582976413793" duration="2562000" />
     </task>
     <servers />
   </component>

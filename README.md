@@ -13,8 +13,7 @@ And greets you with a random quote when you log in 🤓
 - create a new blank db using `npm run init`
 - rebuild with `npm run rebuild`
 - run `electron-builder.cmd`
-- copy your db file to the compiled root folder
-
+- copy your db file and icon.png to the compiled root folder
 ## Todo:
    - UI for the window.
    - Improve window postion

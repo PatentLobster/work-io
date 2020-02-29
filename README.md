@@ -12,4 +12,5 @@ And greets you with a random quote when you log in 🤓
 
 ## Todo:
    - UI for the window.
+   - Improve window postion
    - Convert date to local   

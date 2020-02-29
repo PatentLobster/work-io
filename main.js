@@ -66,8 +66,16 @@ const createWindow = () => {
     window.loadFile('src/index.html');
     // window.webContents.openDevTools()
     window.on('hide', () => {
-    window = null
+    window.destroy();
     })
+    window.on('closed', (event) => {
+        if(app.isQuiting){
+           createTray()
+            event.preventDefault();
+
+        }
+
+    });
 }
 
 
@@ -180,6 +188,14 @@ function greet() {
         // console.log(response.data.quote.body);
     }).then((arr) => callNotification(arr) );
 }
+
+app.on('window-all-closed', () => {
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    // app.quit()
+  }
+})
 
 
 

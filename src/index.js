@@ -37,7 +37,7 @@ function get_data() {
 
 function update_clock(got_in) {
     var b = moment(new Date(), 'HH:mm:ss');
-    var a = moment(got_in, 'HH:mm:ss').add(9, "hours");
+    var a = moment(got_in, 'HH:mm:ss').add(11, "hours");
     let sum;
     let headerTitle = document.getElementById("title");
     sum = a.diff(b);

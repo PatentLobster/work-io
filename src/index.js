@@ -1,3 +1,4 @@
+const moment =require('moment');
 const knex = require('knex')({
   client: 'sqlite3',
   connection: {
@@ -11,12 +12,16 @@ function get_data() {
     //do something here
     // console.log(projectNames);
     // return projectNames;
-
+    var datetime = new Date();
+    let today = datetime.toISOString().slice(0, 10);
     console.log(projectNames)
     for( var i = 0; i < projectNames.length; i++ )
     {
       const list = document.getElementById("table_body");
       let d = projectNames[i];
+      if(today == d.today) {
+        update_clock(d.got_in);
+      }
       // console.log(projectNames[i].today+'\n');
       list.insertAdjacentHTML('beforeend',
           `<tr>
@@ -30,12 +35,21 @@ function get_data() {
   });
 }
 
+function update_clock(got_in) {
+    var b = moment(new Date(), 'HH:mm:ss');
+    var a = moment(got_in, 'HH:mm:ss').add(9, "hours");
+    let sum;
+    let headerTitle = document.getElementById("title");
+    sum = a.diff(b);
+    sum = moment.duration(sum);
+    // var b = moment("21:00:55", 'HH:mm:ss');
+      headerTitle.innerText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
+      setInterval(function () {
+        if(sum.hours() !== 0) {
+          update_clock(got_in)
 
-function render_data() {
-  let data;
-  data = get_data();
-  console.log(data);
-
+        }
+      })
 }
 
 get_data()

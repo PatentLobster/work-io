@@ -24,8 +24,8 @@ const toggleWindow = () => {
 
 const showWindow = () => {
     const position = getWindowPosition();
-    window.show();
     window.reload();
+    window.show();
     window.setPosition(position.x, position.y, true);
     console.log(window.getPosition())
 }
@@ -35,7 +35,6 @@ const getWindowPosition = () => {
     const trayBounds = tray.getBounds();
     const x = Math.round(trayBounds.x - (windowBounds.height / 4))
     const y = Math.round((trayBounds.y + trayBounds.height + 120)/2)
-    console.log("yyyyy", y)
     return {x: x, y: y}
 }
 
@@ -47,12 +46,14 @@ const createWindow = () => {
         frame: false,
         fullscreenable: false,
         resizable: false,
-        transparent: false,
+        transparent: true,
         webPreferences: {
             nodeIntegration: true
         }
     });
+
     window.loadFile('src/index.html');
+    window.webContents.openDevTools()
 }
 
 

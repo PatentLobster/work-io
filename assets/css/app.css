@@ -1,0 +1,25 @@
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+:root {
+  --text-color: #333;
+  --window-border-radius: 6px;
+  --button-border-radius: 4px;
+  --input-border-radius: 4px;
+  --font-size: 14px; }
+
+
+.content {
+    border-radius: 20px;
+    height: 420px;
+    padding: 1em;
+    color: white;
+    background-color: #333333;
+
+}
+

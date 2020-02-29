@@ -3,8 +3,6 @@ const axios = require('axios')
 
 let tray = undefined;
 let window = undefined;
-// Don't show the app in the doc
-// app.dock.hide();
 
 const createTray = () => {
     tray = new Tray('icon.png');
@@ -26,7 +24,6 @@ const toggleWindow = () => {
 
 const showWindow = () => {
     const position = getWindowPosition();
-    // console.log(position)
     window.show();
     window.reload();
     window.setPosition(position.x, position.y, true);
@@ -36,12 +33,7 @@ const showWindow = () => {
 const getWindowPosition = () => {
     const windowBounds = window.getBounds();
     const trayBounds = tray.getBounds();
-
-    // Center window horizontally above the tray icon
-    console.log("x:", trayBounds.x," y:",trayBounds.y, " twidth: ", trayBounds.width," theight: ",trayBounds.height, " wwwi:", "windowBounds.width" )
     const x = Math.round(trayBounds.x - (windowBounds.height / 4))
-    console.log('XXXX:', x);
-    // Position window 4 pixels vertically below the tray icon
     const y = Math.round((trayBounds.y + trayBounds.height + 120)/2)
     console.log("yyyyy", y)
     return {x: x, y: y}
@@ -61,12 +53,6 @@ const createWindow = () => {
         }
     });
     window.loadFile('src/index.html');
-    // Hide the window when it loses focus
-    // window.on('blur', () => {
-    //     if (!window.webContents.isDevToolsOpened()) {
-    //         window.hide();
-    //     }
-    // });
 }
 
 
@@ -78,13 +64,6 @@ function getTimeRemaining(endtime){
   var minutes = Math.floor( (t/1000/60) % 60 );
   var hours = Math.floor( (t/(1000*60*60)) % 24 );
   var days = Math.floor( t/(1000*60*60*24) );
-  // return {
-  //   'total': t,
-  //   'days': days,
-  //   'hours': hours,
-  //   'minutes': minutes,
-  //   'seconds': seconds
-  // };
   let time = `${hours}:${minutes}:${seconds}`
   return time;
 }
@@ -101,9 +80,7 @@ function initializeClock(endtime){
 
     var timeinterval = setInterval(function(){
     var t = getTimeRemaining(endtime);
-    // return.log(t)
-    //   return t.toString();
-      tray.setToolTip(t)
+    tray.setToolTip(t)
     if(t.total<=0){
       clearInterval(timeinterval);
     }
@@ -115,11 +92,8 @@ Date.prototype.addHours= function(h){
     return this;
 }
 
-// let lol = initializeClock(meme);
 let  meme;
 meme = new Date().addHours(9).toString();
-
-
 
 // DB Section
 const knex = require('knex')({
@@ -141,12 +115,10 @@ function log_in() {
         .then(function(rows) {
             if (rows.length===0) {
                 // no matching records found
-                // return knex('ingredients').insert({'name': val})
                 initializeClock(meme);
                 return knex('work_hours').insert({'today': today, "got_in": now});
             } else {
-                // initializeClock(meme)
-                // return knex('work_hours').where({'today': today}).update({'got_out': now});
+
             }
         })
         .catch(function(ex) {
@@ -164,9 +136,6 @@ function log_out() {
         .where('today', today)
         .then(function(rows) {
             if (rows.length===0) {
-                // no matching records found
-                // return knex('ingredients').insert({'name': val})
-                // return knex('work_hours').insert({'today': today, "got_in": now});
                 const arr = {'title': "Didnt save", 'body': "You logged out before you logged in", icon: "icon.png"};
                 callNotification(arr)
             } else {
@@ -175,18 +144,12 @@ function log_out() {
         })
         .catch(function(ex) {
             // you can find errors here.
-
         })
 }
 
 
 // Notifications section
 function callNotification(notif){
-    // const notif={
-    //       title: 'Headline',
-    //       body: 'Here write your message'
-    //       // icon: iconAddress
-    //     };
     new Notification(notif).show();
 }
 
@@ -202,7 +165,6 @@ function greet() {
         // console.log(response.data.quote.body);
     }).then((arr) => callNotification(arr) );
 }
-
 
 // Run app
 app.on('ready', () => {

@@ -1,6 +1,42 @@
-const { app, powerMonitor, Menu, Tray, Notification } = require('electron')
+const { app, powerMonitor, Menu, Tray, Notification, BrowserWindow } = require('electron')
 const axios = require('axios')
 
+function createWindow () {
+  // Create the browser window.
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  // and load the index.html of the app.
+  win.loadFile('src/index.html')
+
+  // Open the DevTools.
+  win.webContents.openDevTools()
+    win.on('minimize',function(event){
+        event.preventDefault();
+        win.hide();
+    });
+
+    win.on('close', function (event) {
+        if(!application.isQuiting){
+            event.preventDefault();
+            win.hide();
+        }
+
+        return false;
+    });
+}
+
+
+
+
+
+
+// Count down section
 function getTimeRemaining(endtime){
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor( (t/1000) % 60 );
@@ -44,16 +80,9 @@ Date.prototype.addHours= function(h){
     return this;
 }
 
-
-
-
 // let lol = initializeClock(meme);
-let  meme = "2020-02-29T06:36:37.089Z";
+let  meme;
 meme = new Date().addHours(9).toString();
-// function memes() {
-//     initializeClock(meme)
-//
-// }
 
 
 
@@ -150,17 +179,6 @@ app.on('ready', () => {
         log_out()
     })
 
-    // tray = new Tray('memes.png')
-    // const contextMenu = Menu.buildFromTemplate([
-    //     { label: 'Exit', click() {
-    //         app.quit()
-    //         }}
-    // ])
-    // tray.setToolTip("Wanna go home?")
-    // // initializeClock(meme)
-    //
-    // tray.on("mouse-enter", () => {
-    //     tray.setToolTip(initializeClock(meme))
-    // })
-    // tray.setContextMenu(contextMenu)
+    createWindow()
+
 })

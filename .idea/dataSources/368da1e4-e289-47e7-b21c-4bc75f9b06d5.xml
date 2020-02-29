@@ -55,7 +55,6 @@
     <index id="17" parent="7" name="sqlite_autoindex_work_hours_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>today</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="18" parent="7">

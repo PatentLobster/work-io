@@ -17,9 +17,52 @@ html {
 .content {
     border-radius: 20px;
     height: 420px;
-    padding: 1em;
     color: white;
-    background-color: #333333;
-
+    background-image: radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
 }
 
+.header{
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    /* padding-top: 1px; */
+    background-color: #ffffff14;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.header h1{
+    padding: 10px;
+}
+
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  /*height:300px;*/
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+  overflow-y: scroll;
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}

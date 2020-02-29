@@ -15,11 +15,15 @@ function get_data() {
     console.log(projectNames)
     for( var i = 0; i < projectNames.length; i++ )
     {
-      const list = document.getElementById("lol");
+      const list = document.getElementById("table_body");
       let d = projectNames[i];
       // console.log(projectNames[i].today+'\n');
       list.insertAdjacentHTML('beforeend',
-          `<li>Date ${d.today} | Got in ${d.got_in} | Got Out ${d.got_out} </li>
+          `<tr>
+                  <td>${d.today}</td>
+                  <td>${d.got_in}</td>
+                  <td>${d.got_out}</td>
+                </tr>
       `);
 
     }

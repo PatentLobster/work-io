@@ -15,6 +15,12 @@ And greets you with a random quote when you log in 🤓
 - run `electron-builder.cmd`
 - copy your db file and icon.png to the compiled root folder
 ## Todo:
-   - UI for the window.
-   - Improve window postion
-   - Convert date to local   
+   - Improve UI.
+   - Improve window positioning logic(cross platform).
+   - Convert date to local.
+   - Add search option.
+   - Refactor to seprate files.
+   - Optimize dev&build scripts.
+   - Alert on countdown complete.
+   
+   

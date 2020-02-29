@@ -12,4 +12,4 @@ And greets you with a random quote when you log in 🤓
 
 ## Todo:
    - UI for the window.
-   
+   - Convert date to local   

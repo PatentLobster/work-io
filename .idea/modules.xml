@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://C:/repos/vue-work-io/.idea/vue-work-io.iml" filepath="C:/repos/vue-work-io/.idea/vue-work-io.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/work-io.iml" filepath="$PROJECT_DIR$/.idea/work-io.iml" />
-    </modules>
-  </component>
-</project>

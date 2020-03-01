@@ -8,7 +8,7 @@ And greets you with a random quote when you log in 🤓
 - `npm install`
 - create a new blank db using `npm run init`
 - rebuild with `npm run rebuild`
-- `npm run`
+- `npm start`
 #### Compile:
 - `npm install`
 - `npm run build`
@@ -20,5 +20,5 @@ And greets you with a random quote when you log in 🤓
    - Refactor to seprate files.
    - Optimize dev ( watcher ) script.
    - Alert on countdown complete.
-   
+   - Refactor countdown logic.
    

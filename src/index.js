@@ -1,38 +1,33 @@
-const moment =require('moment');
+const moment = require('moment');
 const knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: "dbs.sqlite3"
-  }
+    client: 'sqlite3',
+    connection: {
+        filename: "dbs.sqlite3"
+    }
 });
 
 
 function get_data() {
-  knex('work_hours').select('today', 'got_in', 'got_out').then(function (projectNames) {
-    //do something here
-    // console.log(projectNames);
-    // return projectNames;
-    var datetime = new Date();
-    let today = datetime.toISOString().slice(0, 10);
-    console.log(projectNames)
-    for( var i = 0; i < projectNames.length; i++ )
-    {
-      const list = document.getElementById("table_body");
-      let d = projectNames[i];
-      if(today == d.today) {
-        update_clock(d.got_in);
-      }
-      // console.log(projectNames[i].today+'\n');
-      list.insertAdjacentHTML('beforeend',
-          `<tr>
+    knex('work_hours').select('today', 'got_in', 'got_out').then(function (row) {
+        var datetime = new Date();
+        let today = datetime.toISOString().slice(0, 10);
+        console.log(row)
+        for (var i = 0; i < row.length; i++) {
+            const list = document.getElementById("table_body");
+            let d = row[i];
+            if (today == d.today) {
+                update_clock(d.got_in);
+            }
+            list.insertAdjacentHTML('beforeend',
+                `<tr>
                   <td>${d.today}</td>
                   <td>${d.got_in}</td>
                   <td>${d.got_out}</td>
                 </tr>
       `);
 
-    }
-  });
+        }
+    });
 }
 
 function update_clock(got_in) {
@@ -42,26 +37,15 @@ function update_clock(got_in) {
 
     sum = a.diff(b);
     sum = moment.duration(sum);
-    // var b = moment("21:00:55", 'HH:mm:ss');
+    let headerTitle = document.getElementById("title");
+    headerTitle.innerText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
 
-      // setInterval(function () {
-      //   if(sum.hours() !== 0) {
-      //     update_clock(got_in)
-      //
-      //   }
-      // })
-        let headerTitle = document.getElementById("title");
-        headerTitle.innerText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
-
-      setInterval(function(){
-        // var t = update_clock(got_in);
-        // // tray.setToolTip(t)
-        update_clock(got_in);
-        if(sum.hours() !== 0){
-          clearInterval(timeinterval);
+    setInterval(function () {
+        // update_clock(got_in);
+        if (sum.hours() !== 0) {
+            clearInterval(update_clock(got_in));
         }
-        },1);
-      // return sum
-}
+    }, 1);
 
-get_data()
+}
+get_data();

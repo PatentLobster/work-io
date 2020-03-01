@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "init": "node create_db.js",
-    "rebuild": "electron-rebuild -f -w sqlite3"
+    "rebuild": "electron-rebuild -f -w sqlite3",
+    "build": "npm run init && electron-builder"
   },
   "author": "PatentLobster",
   "license": "ISC",
@@ -20,5 +21,12 @@
     "electron": "^8.0.2",
     "electron-builder": "^22.3.2",
     "electron-rebuild": "^1.10.0"
+  },
+  "build": {
+  "appId": "io.work.app",
+    "extraFiles": [
+      "icon.png",
+      "dbs.sqlite3"
+    ]
   }
 }

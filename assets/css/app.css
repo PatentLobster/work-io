@@ -6,6 +6,7 @@ html {
 *:after {
   box-sizing: inherit;
     font-family: sans-serif, "Fira Code","Cascadia Code PL", "Arial";
+    margin: 0 auto;
 }
 
 :root {
@@ -18,7 +19,7 @@ html {
 
 .content {
     border-radius: 20px;
-    height: 420px;
+    height: 450px;
     color: white;
     background-image: radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
 }

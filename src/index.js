@@ -7,17 +7,23 @@ const knex = require('knex')({
 });
 
 
+var datetime = new Date();
+let today = datetime.toISOString().slice(0, 10);
+let got_in_today = null;
+let counterText = undefined;
+let daysList = {};
 function get_data() {
     knex('work_hours').select('today', 'got_in', 'got_out').then(function (row) {
-        var datetime = new Date();
-        let today = datetime.toISOString().slice(0, 10);
         console.log(row)
+        daysList = row;
         for (var i = 0; i < row.length; i++) {
             const list = document.getElementById("table_body");
             let d = row[i];
             if (today == d.today) {
-                update_clock(d.got_in);
+                // update_clock(d.got_in);
+                got_in_today = d.got_in;
             }
+
             list.insertAdjacentHTML('beforeend',
                 `<tr>
                   <td>${d.today}</td>
@@ -30,22 +36,28 @@ function get_data() {
     });
 }
 
-function update_clock(got_in) {
-    var b = moment(new Date(), 'HH:mm:ss');
-    var a = moment(got_in, 'HH:mm:ss').add(11, "hours");
+function update_clock() {
+    let b = moment(new Date(), 'HH:mm:ss');
+    let a = moment(got_in_today, 'HH:mm:ss').add(9, "hours");
     let sum;
 
     sum = a.diff(b);
     sum = moment.duration(sum);
     let headerTitle = document.getElementById("title");
-    headerTitle.innerText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
-
-    setInterval(function () {
-        // update_clock(got_in);
-        if (sum.hours() !== 0) {
-            clearInterval(update_clock(got_in));
-        }
-    }, 1);
-
+    counterText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
+    headerTitle.innerText = counterText;
 }
+
+
+async function init() {
+    setInterval(function () {
+        if (got_in_today !== null){
+            if (counterText !== "00:00:00") {
+            update_clock()
+            }
+        }
+    }, 1000)
+}
+
 get_data();
+init();

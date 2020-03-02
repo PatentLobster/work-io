@@ -1,7 +1,6 @@
 const { app, powerMonitor, Menu, Tray, Notification, BrowserWindow } = require('electron');
 const axios = require('axios');
-
-
+const moment = require('moment');
 // Window & Tray Section
 let tray = undefined;
 let window = undefined;
@@ -47,8 +46,18 @@ const showWindow = () => {
 const getWindowPosition = () => {
     const windowBounds = window.getBounds();
     const trayBounds = tray.getBounds();
-    const x = Math.round(trayBounds.x - (windowBounds.height / 4))
-    const y = Math.round((trayBounds.y + trayBounds.height + 120)/2)
+    const x =  Math.round(trayBounds.x - (windowBounds.width / 2.333));
+    const y = trayBounds.y - windowBounds.height ;
+    // console.table({
+    //     'trayBounds.x': trayBounds.x,
+    //     'trayBounds.y': trayBounds.y,
+    //     'trayBounds.height': trayBounds.height,
+    //     'trayBounds.width': trayBounds.width,
+    //     'windowBounds.height': windowBounds.height,
+    //     'windowBounds.width': windowBounds.width,
+    //     'x': x,
+    //     'y': y
+    // });
     return {x: x, y: y}
 };
 
@@ -58,11 +67,14 @@ const createWindow = () => {
         height: 450,
         show: true,
         frame: false,
+        alwaysOnTop: true,
+        skipTaskbar: true,
         fullscreenable: false,
         resizable: false,
         transparent: true,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            backgroundThrottling: false,
         }
     });
     const position = getWindowPosition();
@@ -107,6 +119,7 @@ Date.prototype.addHours= function(h){
 
 let  countDownTimer;
 countDownTimer = new Date().addHours(9).toString();
+let datetime = new Date();
 
 // DB Section
 const knex = require('knex')({
@@ -116,12 +129,11 @@ const knex = require('knex')({
   }
 });
 
+
 function log_in() {
-    countDownTimer = new Date().addHours(9).toString();
-    // initializeClock(countDownTimer)
-    var datetime = new Date();
     let today = datetime.toISOString().slice(0, 10);
-    let now = datetime.toISOString().match(/(\d{2}:){2}\d{2}/)[0];
+    let t = moment(datetime, "HH:mm:ss");
+    const now = `${t.hours()}:${t.minutes()}:${t.seconds()}`;
     return knex('work_hours')
         .select()
         .where('today', today)
@@ -134,14 +146,15 @@ function log_in() {
         })
         .catch(function(ex) {
             // you can find errors here.
-            initializeClock(countDownTimer)
         })
 }
 
 function log_out() {
-    var datetime = new Date();
+;
     let today = datetime.toISOString().slice(0, 10);
-    let now = datetime.toISOString().match(/(\d{2}:){2}\d{2}/)[0];
+    let t = moment(datetime, "HH:mm:ss");
+    const now = `${t.hours()}:${t.minutes()}:${t.seconds()}`;
+    // let now = moment(datetime, 'HH:mm:ss');
     return knex('work_hours')
         .select()
         .where('today', today)

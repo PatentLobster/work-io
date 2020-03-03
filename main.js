@@ -1,7 +1,11 @@
 const { app, powerMonitor, Menu, Tray, Notification, BrowserWindow } = require('electron');
 const axios = require('axios');
 const moment = require('moment');
+
+
+
 // Window & Tray Section
+//     Vars
 let tray = undefined;
 let window = undefined;
 
@@ -27,7 +31,8 @@ const toggleWindow = () => {
         createWindow()
     } else {
         if (window.isVisible()) {
-            window.hide(); window = null;
+            window.hide();
+            window = null;
         } else {
          showWindow();
         }
@@ -38,7 +43,7 @@ const showWindow = () => {
     // createWindow()
     window.loadFile('src/index.html');
     const position = getWindowPosition();
-    window.reload();
+    // window.reload();
     window.show();
     window.setPosition(position.x, position.y, true);
     console.log(window.getPosition())
@@ -48,16 +53,6 @@ const getWindowPosition = () => {
     const trayBounds = tray.getBounds();
     const x =  Math.round(trayBounds.x - (windowBounds.width / 2.333));
     const y = trayBounds.y - windowBounds.height ;
-    // console.table({
-    //     'trayBounds.x': trayBounds.x,
-    //     'trayBounds.y': trayBounds.y,
-    //     'trayBounds.height': trayBounds.height,
-    //     'trayBounds.width': trayBounds.width,
-    //     'windowBounds.height': windowBounds.height,
-    //     'windowBounds.width': windowBounds.width,
-    //     'x': x,
-    //     'y': y
-    // });
     return {x: x, y: y}
 };
 
@@ -92,34 +87,43 @@ const createWindow = () => {
 };
 
 // Countdown section
-function getTimeRemaining(endtime){
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor( (t/1000) % 60 );
-  var minutes = Math.floor( (t/1000/60) % 60 );
-  var hours = Math.floor( (t/(1000*60*60)) % 24 );
-  var days = Math.floor( t/(1000*60*60*24) );
-  let time = `${hours}:${minutes}:${seconds}`;
-  return time;
-}
-
-function initializeClock(endtime){
-    var timeinterval = setInterval(function(){
-    var t = getTimeRemaining(endtime);
-    tray.setToolTip(t);
-    if(t.total<=0){
-      clearInterval(timeinterval);
-    }
-  },1000);
-}
-
 Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
 };
-
+//     Vars
 let  countDownTimer;
 countDownTimer = new Date().addHours(9).toString();
 let datetime = new Date();
+
+// function getTimeRemaining(endtime){
+//     let a = moment(datetime, 'HH:mm:ss');
+//     let b = moment(endtime, 'HH:mm:ss');
+//     let sum =b.diff(a);
+//     sum = moment.duration(sum);
+//     const sumText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
+//     return sumText;
+//     // var t = Date.parse(endtime) - Date.parse(new Date());
+//   // var seconds = Math.floor( (t/1000) % 60 );
+//   // var minutes = Math.floor( (t/1000/60) % 60 );
+//   // var hours = Math.floor( (t/(1000*60*60)) % 24 );
+//   // // var days = Math.floor( t/(1000*60*60*24) );
+//   // let time = `${hours}:${minutes}:${seconds}`;
+//   // return time;
+// }
+
+// function initializeClock(endtime){
+//     var timeinterval = setInterval(function(){
+//     var t = getTimeRemaining(endtime);
+//     tray.setToolTip(t);
+//     if(t.total<=0){
+//       clearInterval(timeinterval);
+//     }
+//   },1000);
+// }
+
+
+
 
 // DB Section
 const knex = require('knex')({
@@ -140,7 +144,7 @@ function log_in() {
         .then(function(rows) {
             if (rows.length===0) {
                 // no matching records found
-                initializeClock(countDownTimer);
+                // initializeClock(countDownTimer);
                 return knex('work_hours').insert({'today': today, "got_in": now});
             }
         })

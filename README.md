@@ -14,11 +14,11 @@ And greets you with a random quote when you log in 🤓
 - `npm run build`
 ## Todo:
    - Improve UI.
-   - Improve window positioning logic(cross platform).
-   - Convert date to local.
+   - use ipcMain for db calls.
    - Add search option.
    - Refactor to seprate files.
    - Optimize dev ( watcher ) script.
-   - Alert on countdown complete.
-   - Refactor countdown logic.
+   - Add total hours value in table.
+   - Get&Group list results by month.
+   
    

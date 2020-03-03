@@ -23,12 +23,21 @@ function get_data() {
                 // update_clock(d.got_in);
                 got_in_today = d.got_in;
             }
+            let sumText="null";
+            if(d.got_out !== null) {
+            let a = moment(d.got_in, 'HH:mm:ss');
+            let b = moment(d.got_out, 'HH:mm:ss');
+            let sum =b.diff(a);
+            sum = moment.duration(sum);
+            sumText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
+            }
 
             list.insertAdjacentHTML('beforeend',
                 `<tr>
                   <td>${d.today}</td>
                   <td>${d.got_in}</td>
                   <td>${d.got_out}</td>
+                  <td>${sumText}</td>
                 </tr>
       `);
 
@@ -43,9 +52,11 @@ function update_clock() {
 
     sum = a.diff(b);
     sum = moment.duration(sum);
-    let headerTitle = document.getElementById("title");
+
+    // let headerTitle = document.getElementById("FooterCounter");
+    let counterItem = document.getElementById("FooterCounter");
     counterText = `${sum.hours()}:${sum.minutes()}:${sum.seconds()}`;
-    headerTitle.innerText = counterText;
+    counterItem.innerText = counterText;
 }
 
 

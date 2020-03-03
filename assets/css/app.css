@@ -40,6 +40,22 @@ html {
     font-family: "Cascadia Code PL", "Fira Code", "Arial";
 }
 
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    color: black;
+    background: white;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+}
+
 table{
   width:100%;
   table-layout: fixed;
@@ -47,6 +63,10 @@ table{
 .tbl-header{
   background-color: rgba(255,255,255,0.3);
  }
+
+.tbl-header table{
+    width: 100%;
+}
 .tbl-content{
   /*height:300px;*/
   overflow-x:auto;
@@ -78,3 +98,5 @@ td{
 ::-webkit-scrollbar-thumb {
   background: #666;
 }
+
+

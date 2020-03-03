@@ -1,7 +1,7 @@
 {
   "name": "work-io",
-  "version": "1.0.0",
-  "description": "Track you first and last login of the day",
+  "version": "1.0.3",
+  "description": "Track your first and last login of the day",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -23,7 +23,7 @@
     "electron-rebuild": "^1.10.0"
   },
   "build": {
-  "appId": "io.work.app",
+    "appId": "io.work.app",
     "extraFiles": [
       "icon.png",
       "dbs.sqlite3"

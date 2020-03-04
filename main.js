@@ -150,9 +150,9 @@ function log_in() {
 }
 
 function log_out() {
-;
-    let today = datetime.toISOString().slice(0, 10);
+    datetime = new Date();
     let t = moment(datetime, "HH:mm:ss");
+    let today = datetime.toISOString().slice(0, 10);
     const now = `${t.hours()}:${t.minutes()}:${t.seconds()}`;
     // let now = moment(datetime, 'HH:mm:ss');
     return knex('work_hours')

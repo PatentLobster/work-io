@@ -67,6 +67,7 @@ const createWindow = () => {
         fullscreenable: false,
         resizable: false,
         transparent: true,
+        movable: true,
         webPreferences: {
             nodeIntegration: true,
             backgroundThrottling: false,

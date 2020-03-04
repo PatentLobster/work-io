@@ -1,6 +1,6 @@
 {
   "name": "work-io",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Track your first and last login of the day",
   "main": "main.js",
   "scripts": {

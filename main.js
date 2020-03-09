@@ -13,7 +13,9 @@ const createTray = () => {
     tray = new Tray('icon.png');
     const contextMenu = Menu.buildFromTemplate([
         { label: "Open Developer tools", click() {
-                window.webContents.openDevTools()
+            if( window !== null || window !== undefined) {
+                window.webContents.openDevTools();
+            }
             }},
         { label: 'Exit', click() {
             app.quit()

@@ -2,13 +2,6 @@ html {
     box-sizing: border-box;
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-    font-family: sans-serif, "Fira Code", "Cascadia Code PL", "Arial";
-    margin: 0 auto;
-}
 
 body {
     -webkit-app-region: drag;
@@ -26,7 +19,7 @@ body {
 .content {
     border-radius: 20px;
     height: 450px;
-    color: white;
+    /*color: white;*/
     background-image: radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(60% 50% ellipse at center bottom, #261226 0%, #100a1c 100%);
 }
 
@@ -58,46 +51,7 @@ body {
     background: white;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-}
-
-table {
-    width: 100%;
-    table-layout: fixed;
-}
-
-.tbl-header {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.tbl-header table {
-    width: 100%;
-}
-
-.tbl-content {
-    /*height:300px;*/
-    overflow-x: auto;
-    margin-top: 0px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    overflow-y: scroll;
-}
-
-th {
-    padding: 20px 15px;
-    text-align: left;
-    font-weight: 500;
-    font-size: 12px;
-    color: #fff;
-}
-
-td {
-    padding: 15px;
-    text-align: left;
-    vertical-align: middle;
-    font-weight: 300;
-    font-size: 12px;
-    color: #fff;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+    /*background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);*/
 }
 
 ::-webkit-scrollbar {
@@ -108,4 +62,21 @@ td {
     background: #666;
 }
 
+.to-bottom {
+    bottom: 0;
+    /*margin: 0 auto;*/
+    position: absolute;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 
+}
+
+.toolbar-header{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.title {
+    font-size: 20px;
+}

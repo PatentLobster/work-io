@@ -1,7 +1,7 @@
 {
   "name": "work-io",
-  "version": "1.0.5",
-  "description": "Track your first and last login of the day",
+  "version": "1.0.6",
+  "description": "Track your work hours",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
